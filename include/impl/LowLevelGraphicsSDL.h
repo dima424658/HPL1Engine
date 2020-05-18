@@ -19,7 +19,11 @@
 #ifndef HPL_LOWLEVELGRAPHICS_SDL_H
 #define HPL_LOWLEVELGRAPHICS_SDL_H
 
-#include <GL/GLee.h>
+#include <glad/glad.h>
+
+#ifdef _WIN32
+#include <glad/glad_wgl.h>
+#endif
 
 #include <Cg/cg.h>
 #include <Cg/cgGL.h>
@@ -231,7 +235,7 @@ namespace hpl {
 
 		iBitmap2D* CreateBitmap2DFromSurface(SDL_Surface* apSurface,const tString& asType);
 
-		CGcontext GetGC_Context(){ return mCG_Context;}
+		CGcontext GetGC_Context() {return mCG_Context;}
 
 		void SetupGL();
 

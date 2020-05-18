@@ -1442,7 +1442,7 @@ namespace hpl {
 	{
 	public:
 		//The point1 must be > than point2 for this to work!
-		bool operator()(const cTriEdge &Edge1, const cTriEdge &Edge2)const
+		bool operator()(const cTriEdge &Edge1, const cTriEdge &Edge2) const
 		{
 			cVector3f vPoint1_1 = GetVector3(gpVertexArray,Edge1.point1,glVertexStride);
 			cVector3f vPoint1_2 = GetVector3(gpVertexArray,Edge1.point2,glVertexStride);

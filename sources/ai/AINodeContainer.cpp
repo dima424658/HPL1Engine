@@ -319,7 +319,7 @@ namespace hpl {
 	class cSortEndNodes
 	{
 	public:
-		bool operator()(const cAINodeEdge &aEndA, const cAINodeEdge &aEndB)
+		bool operator()(const cAINodeEdge &aEndA, const cAINodeEdge &aEndB) const
 		{
 			return aEndA.mfDistance < aEndB.mfDistance;
 		}

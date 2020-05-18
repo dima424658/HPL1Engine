@@ -24,7 +24,12 @@
 #include "impl/LowLevelGraphicsSDL.h"
 #include "impl/SDLBitmap2D.h"
 
-#include <GL/GLee.h>
+#include <glad/glad.h>
+
+#ifdef _WIN32
+#include <glad/glad_wgl.h>
+#endif
+
 #if defined(__APPLE__)&&defined(__MACH__)
 #include <OpenGL/glu.h>
 #else

@@ -26,11 +26,6 @@
 #include <shlobj.h>
 #endif
 
-#ifndef WIN32
-// Include FLTK
-#include "FL/fl_ask.H"
-#endif
-
 #define _UNICODE
 
 #include <stdio.h>

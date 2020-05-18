@@ -19,7 +19,12 @@
 #ifndef HPL_P_BUFFER_H
 #define HPL_P_BUFFER_H
 
-#include <GL/GLee.h>
+#include <glad/glad.h>
+
+#ifdef _WIN32
+#include <glad/glad_wgl.h>
+#endif
+
 #include <vector>
 
 

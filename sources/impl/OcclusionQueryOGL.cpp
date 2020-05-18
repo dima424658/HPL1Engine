@@ -18,8 +18,11 @@
  */
 #include "impl/OcclusionQueryOGL.h"
 
-#include <GL/GLee.h>
+#include <glad/glad.h>
 
+#ifdef _WIN32
+#include <glad/glad_wgl.h>
+#endif
 
 namespace hpl {
 

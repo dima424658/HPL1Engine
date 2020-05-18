@@ -1179,7 +1179,7 @@ namespace hpl {
 	class cColladaTestTriCompare
 	{
 	public:
-		bool operator()(const cColladaTestTri& aTri1, const cColladaTestTri& aTri2)const
+		bool operator()(const cColladaTestTri& aTri1, const cColladaTestTri& aTri2) const
 		{
 			//0
 			if(aTri1.mvPos[0].x != aTri2.mvPos[0].x) return aTri1.mvPos[0].x < aTri2.mvPos[0].x;

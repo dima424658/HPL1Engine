@@ -19,8 +19,12 @@
 #ifndef HPL_CGPROGRAM_H
 #define HPL_CGPROGRAM_H
 
-//#include <windows.h>
-#include <GL/GLee.h>
+#include <glad/glad.h>
+
+#ifdef _WIN32
+#include <glad/glad_wgl.h>
+#endif
+
 #include <Cg/cg.h>
 #include <Cg/cgGL.h>
 

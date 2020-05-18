@@ -28,7 +28,11 @@
 #include "scene/Light3DSpot.h"
 #include "system/LowLevelSystem.h"
 
-#include <GL/GLee.h>
+#include <glad/glad.h>
+
+#ifdef _WIN32
+#include <glad/glad_wgl.h>
+#endif
 
 namespace hpl {
 
