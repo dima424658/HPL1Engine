@@ -16,14 +16,6 @@
  * You should have received a copy of the GNU General Public License
  * along with HPL1 Engine.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifdef WIN32
-#pragma comment(lib, "OpenGL32.lib")
-#pragma comment(lib, "GLu32.lib")
-#pragma comment(lib, "GLaux.lib")
-#pragma comment(lib, "Cg.lib")
-#pragma comment(lib, "CgGL.lib")
-#pragma comment(lib, "SDL_ttf.lib")
-#endif
 
 #include <assert.h>
 #include <stdlib.h>
@@ -55,8 +47,8 @@ namespace hpl {
 		case eColorDataFormat_RGB:		return GL_RGB;
 		case eColorDataFormat_RGBA:		return GL_RGBA;
 		case eColorDataFormat_ALPHA:	return GL_ALPHA;
-		case eColorDataFormat_BGR:		return GL_BGR_EXT;
-		case eColorDataFormat_BGRA:		return GL_BGRA_EXT;
+		case eColorDataFormat_BGR:		return GL_BGR;
+		case eColorDataFormat_BGRA:		return GL_BGRA;
 		};
 
 		return 0;

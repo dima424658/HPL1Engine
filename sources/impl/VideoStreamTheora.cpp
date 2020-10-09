@@ -25,9 +25,6 @@
 #include <stdio.h>
 #include <string.h>
 
-#pragma comment(lib, "libogg.lib")
-#pragma comment(lib, "libtheora.lib")
-
 namespace hpl {
 
 	//////////////////////////////////////////////////////////////////////////

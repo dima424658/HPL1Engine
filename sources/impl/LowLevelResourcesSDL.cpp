@@ -16,9 +16,6 @@
  * You should have received a copy of the GNU General Public License
  * along with HPL1 Engine.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifdef WIN32
-#pragma comment(lib, "SDL_image.lib")
-#endif
 
 #include "impl/LowLevelResourcesSDL.h"
 #include "impl/SDLBitmap2D.h"

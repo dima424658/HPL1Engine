@@ -512,7 +512,7 @@ namespace hpl {
 				if(vShapes.size() > 0)
 				{
 					//Create the compound shape if needed.
-					iCollideShape *pShape;
+					iCollideShape *pShape = nullptr;
 					if(vShapes.size()>1){
 						pShape = apPhysicsWorld->CreateCompundShape(vShapes);
 					}

@@ -16,10 +16,6 @@
  * You should have received a copy of the GNU General Public License
  * along with HPL1 Engine.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifdef WIN32
-#pragma comment(lib, "SDL.lib")
-#pragma comment(lib, "SDLmain.lib")
-#endif
 
 #include "impl/SDLGameSetup.h"
 #include "impl/KeyboardSDL.h"

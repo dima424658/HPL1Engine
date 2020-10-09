@@ -19,8 +19,7 @@
 //#include <vld.h>
 //Use this to check for memory leaks!
 
-#ifdef WIN32
-#pragma comment(lib, "angelscript.lib")
+#ifdef _WIN32
 #define UNICODE
 #include <windows.h>
 #include <shlobj.h>
@@ -41,8 +40,8 @@
 
 #include "SDL/SDL.h"
 
-#include "impl/stdstring.h"
-#include "impl/scriptstring.h"
+#include "impl/scriptstdstring.h"
+#include "impl/scripthelper.h"
 
 #include "system/String.h"
 
