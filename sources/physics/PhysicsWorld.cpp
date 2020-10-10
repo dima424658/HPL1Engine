@@ -252,7 +252,7 @@ namespace hpl {
 
 		iPhysicsMaterial *pMaterial =it->second;
 
-		if(pMaterial->IsPreloaded()==false && pMaterial->GetSurfaceData())
+        if(pMaterial->IsPreloaded()==false && pMaterial->GetSurfaceData())
 		{
 			pMaterial->SetPreloaded(true);
 			pMaterial->GetSurfaceData()->PreloadData();
@@ -380,8 +380,8 @@ namespace hpl {
 		cBoundingVolume boundingVolume = apShape->GetBoundingVolume();
 		boundingVolume.SetTransform(cMath::MatrixMul(a_mtxTransform, boundingVolume.GetTransform()));
 
-		//Log("MAIN Position: %s Size: %s\n",boundingVolume.GetWorldCenter().ToString().c_str(),
-		//	boundingVolume.GetSize().ToString().c_str());
+		// Log("MAIN Position: %s Size: %s\n",boundingVolume.GetWorldCenter().ToString().c_str(),
+		// 	boundingVolume.GetSize().ToString().c_str());
 
 		//if(abDebug)Log("--------------\n");
 
@@ -412,8 +412,9 @@ namespace hpl {
 
 			}
 
-			collideData.SetMaxSize(32);
-			bool bRet = CheckShapeCollision(apShape,a_mtxTransform, pBody->GetShape(),pBody->GetLocalMatrix(),
+		   	collideData.SetMaxSize(32);
+			bool bRet = CheckShapeCollision(apShape,a_mtxTransform,
+											pBody->GetShape(),pBody->GetLocalMatrix(),
 											collideData, 32);
 
 			if(bRet)
@@ -426,11 +427,20 @@ namespace hpl {
 				{
 					cCollidePoint &point = collideData.mvContactPoints[i];
 
-					cVector3f vPush = point.mvNormal*point.mfDepth;
+					// EXTREMLY FUCKING BIG HACK!
+					// You have been warned.
+					int mul = 1;
+					cVector3f iv = point.mvPoint - boundingVolume.GetWorldCenter();
+					iv.Normalise();
+					if (cMath::Vector3Dot(iv, point.mvNormal) > 0)
+						mul = -1;
 
+					cVector3f vPush = point.mvNormal * (point.mfDepth * mul);
+					// Log("Bbox %s, iv %s\n", boundingVolume.GetWorldCenter().ToString().c_str(), iv.ToString().c_str());
 					if(std::abs(vPushVec.x) < std::abs(vPush.x)) vPushVec.x = vPush.x;
 					if(std::abs(vPushVec.y) < std::abs(vPush.y)) vPushVec.y = vPush.y;
 					if(std::abs(vPushVec.z) < std::abs(vPush.z)) vPushVec.z = vPush.z;
+					//Log("xx vPush %s, vPushVec %s\n", vPush.ToString().c_str(), vPushVec.ToString().c_str());
 				}
 				bCollide = true;
 			}

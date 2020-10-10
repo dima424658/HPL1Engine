@@ -85,7 +85,10 @@ namespace hpl {
 						iCollideShape* apShapeB, const cMatrixf& a_mtxB,
 						cCollideData & aCollideData, int alMaxPoints=4);
 
-		void RenderDebugGeometry(iLowLevelGraphics *apLowLevel, const cColor& aColor);
+		void RenderShapeDebugGeometry(iCollideShape* apShape, const cMatrixf& a_mtxTransform,
+			iLowLevelGraphics* apLowLevel, const cColor& aColor);
+
+		void RenderDebugGeometry(iLowLevelGraphics* apLowLevel, const cColor& aColor);
 
 		NewtonWorld* GetNewtonWorld(){ return mpNewtonWorld;}
 	private:

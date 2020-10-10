@@ -492,7 +492,7 @@ namespace hpl {
 					int lNum = NewtonCollisionCollide(mpNewtonWorld, alMaxPoints,
 												pSubShapeA->GetNewtonCollision(), &(mtxTransposeA.m[0][0]),
 												pSubShapeB->GetNewtonCollision(), &(mtxTransposeB.m[0][0]),
-												mpTempPoints, mpTempNormals, mpTempDepths);
+												mpTempPoints, mpTempNormals, mpTempDepths, 0);
 					if(lNum<1) continue;
 					if(lNum > alMaxPoints )lNum = alMaxPoints;
 
@@ -536,7 +536,7 @@ namespace hpl {
 			int lNum = NewtonCollisionCollide(mpNewtonWorld, alMaxPoints,
 										pNewtonShapeA->GetNewtonCollision(), &(mtxTransposeA.m[0][0]),
 										pNewtonShapeB->GetNewtonCollision(), &(mtxTransposeB.m[0][0]),
-										mpTempPoints, mpTempNormals, mpTempDepths);
+										mpTempPoints, mpTempNormals, mpTempDepths, 0);
 
 			if(lNum<1) return false;
 			if(lNum > alMaxPoints )lNum = alMaxPoints;
@@ -565,13 +565,50 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	void cPhysicsWorldNewton::RenderDebugGeometry(iLowLevelGraphics *apLowLevel,const cColor &aColor)
+	static iLowLevelGraphics* gpLowLevelGraphics;
+	static cColor gDebugColor;
+
+	static void RenderDebugPolygon(void* apUserData, int alVertexCount, const dFloat* apFaceArray, int alFaceId)
+	{
+		int i;
+
+		i = alVertexCount - 1;
+		cVector3f vP0(apFaceArray[i * 3 + 0], apFaceArray[i * 3 + 1], apFaceArray[i * 3 + 2]);
+		for (i = 0; i < alVertexCount; ++i)
+		{
+			cVector3f vP1(apFaceArray[i * 3 + 0], apFaceArray[i * 3 + 1], apFaceArray[i * 3 + 2]);
+
+			gpLowLevelGraphics->DrawLine(vP0, vP1, gDebugColor);
+
+			vP0 = vP1;
+		}
+
+	}
+
+	//-----------------------------------------------------------------------
+
+	void cPhysicsWorldNewton::RenderShapeDebugGeometry(iCollideShape* apShape, const cMatrixf& a_mtxTransform,
+		iLowLevelGraphics* apLowLevel, const cColor& aColor)
+	{
+		gpLowLevelGraphics = apLowLevel;
+		gDebugColor = aColor;
+
+		cCollideShapeNewton* pNewtonShape = static_cast<cCollideShapeNewton*>(apShape);
+		NewtonCollisionForEachPolygonDo(pNewtonShape->GetNewtonCollision(),
+			&(a_mtxTransform.GetTranspose().m[0][0]),
+			RenderDebugPolygon,
+			NULL);
+	}
+
+	//-----------------------------------------------------------------------
+
+	void cPhysicsWorldNewton::RenderDebugGeometry(iLowLevelGraphics* apLowLevel, const cColor& aColor)
 	{
 		tPhysicsBodyListIt it = mlstBodies.begin();
-		for(;it != mlstBodies.end(); ++it)
+		for (; it != mlstBodies.end(); ++it)
 		{
-			iPhysicsBody *pBody = *it;
-			pBody->RenderDebugGeometry(apLowLevel,aColor);
+			iPhysicsBody* pBody = *it;
+			pBody->RenderDebugGeometry(apLowLevel, aColor);
 		}
 	}
 
