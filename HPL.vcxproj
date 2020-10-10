@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -9,81 +9,394 @@
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{0780DEC5-A930-4721-9364-17A49D2A4E60}</ProjectGuid>
+    <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{3ffee313-7254-46b1-b2e3-6d393a093a43}</ProjectGuid>
+    <RootNamespace>HPL</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>NotSet</CharacterSet>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup>
-    <_ProjectFileVersion>16.0.29911.84</_ProjectFileVersion>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>build\Debug\</OutDir>
-    <IntDir>build\Debug\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(ProjectDir)lib\win32</OutDir>
+    <IntDir>$(SolutionDir)build\$(ProjectName)\$(Configuration)\$(Platform)</IntDir>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)include;$(SolutionDir)dependencies\include;$(SolutionDir)OALWrapper\include</IncludePath>
     <TargetName>$(ProjectName)_d</TargetName>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)OALWrapper\lib\win32;$(SolutionDir)glad\lib\win32;$(SolutionDir)dependencies\lib\win32</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>build\Release\</OutDir>
-    <IntDir>build\Release\</IntDir>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(ProjectDir)lib\win32</OutDir>
+    <IntDir>$(SolutionDir)build\$(ProjectName)\$(Configuration)\$(Platform)</IntDir>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)include;$(SolutionDir)dependencies\include;$(SolutionDir)OALWrapper\include</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)OALWrapper\lib\win32;$(SolutionDir)glad\lib\win32;$(SolutionDir)dependencies\lib\win32</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(ProjectDir)lib\win64</OutDir>
+    <IntDir>$(SolutionDir)build\$(ProjectName)\$(Configuration)\$(Platform)</IntDir>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)include;$(SolutionDir)dependencies\include;$(SolutionDir)OALWrapper\include</IncludePath>
+    <TargetName>$(ProjectName)_d</TargetName>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(SolutionDir)OALWrapper\lib\win64;$(SolutionDir)glad\lib\win64;$(SolutionDir)dependencies\lib\win64</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(ProjectDir)lib\win64</OutDir>
+    <IntDir>$(SolutionDir)build\$(ProjectName)\$(Configuration)\$(Platform)</IntDir>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)include;$(SolutionDir)dependencies\include;$(SolutionDir)OALWrapper\include</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(SolutionDir)OALWrapper\lib\win64;$(SolutionDir)glad\lib\win64;$(SolutionDir)dependencies\lib\win64</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;HPL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader />
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)dependencies\include;$(SolutionDir)OALWrapper\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
-    <Lib>
-      <OutputFile>lib/HPL_d.lib</OutputFile>
-    </Lib>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)dependencies\include;$(SolutionDir)OALWrapper\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;HPL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <PrecompiledHeader />
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
-    <Lib>
-      <OutputFile>lib/HPL.lib</OutputFile>
-      <AdditionalLibraryDirectories>..\dependencies\lib\win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-    </Lib>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="sources\ai\AI.cpp" />
+    <ClCompile Include="sources\ai\AINodeContainer.cpp" />
+    <ClCompile Include="sources\ai\AINodeGenerator.cpp" />
+    <ClCompile Include="sources\ai\AStar.cpp" />
+    <ClCompile Include="sources\ai\StateMachine.cpp" />
+    <ClCompile Include="sources\game\Game.cpp" />
+    <ClCompile Include="sources\game\GameTypes.cpp" />
+    <ClCompile Include="sources\game\SaveGame.cpp" />
+    <ClCompile Include="sources\game\ScriptFuncs.cpp" />
+    <ClCompile Include="sources\game\Updater.cpp" />
+    <ClCompile Include="sources\graphics\Animation.cpp" />
+    <ClCompile Include="sources\graphics\AnimationTrack.cpp" />
+    <ClCompile Include="sources\graphics\BackgroundImage.cpp" />
+    <ClCompile Include="sources\graphics\Beam.cpp" />
+    <ClCompile Include="sources\graphics\BillBoard.cpp" />
+    <ClCompile Include="sources\graphics\Bone.cpp" />
+    <ClCompile Include="sources\graphics\BoneState.cpp" />
+    <ClCompile Include="sources\graphics\Color.cpp" />
+    <ClCompile Include="sources\graphics\FontData.cpp" />
+    <ClCompile Include="sources\graphics\GfxObject.cpp" />
+    <ClCompile Include="sources\graphics\GPUProgram.cpp" />
+    <ClCompile Include="sources\graphics\Graphics.cpp" />
+    <ClCompile Include="sources\graphics\GraphicsDrawer.cpp" />
+    <ClCompile Include="sources\graphics\ImageEntityData.cpp" />
+    <ClCompile Include="sources\graphics\Material.cpp" />
+    <ClCompile Include="sources\graphics\MaterialHandler.cpp" />
+    <ClCompile Include="sources\graphics\Material_Additive.cpp" />
+    <ClCompile Include="sources\graphics\Material_Alpha.cpp" />
+    <ClCompile Include="sources\graphics\Material_BaseLight.cpp" />
+    <ClCompile Include="sources\graphics\Material_Bump.cpp" />
+    <ClCompile Include="sources\graphics\Material_BumpColorSpec.cpp" />
+    <ClCompile Include="sources\graphics\Material_BumpSpec.cpp" />
+    <ClCompile Include="sources\graphics\Material_BumpSpec2D.cpp" />
+    <ClCompile Include="sources\graphics\Material_Diffuse.cpp" />
+    <ClCompile Include="sources\graphics\Material_Diffuse2D.cpp" />
+    <ClCompile Include="sources\graphics\Material_DiffuseAdditive2D.cpp" />
+    <ClCompile Include="sources\graphics\Material_DiffuseAlpha2D.cpp" />
+    <ClCompile Include="sources\graphics\Material_DiffuseSpec.cpp" />
+    <ClCompile Include="sources\graphics\Material_EnvMap_Reflect.cpp" />
+    <ClCompile Include="sources\graphics\Material_Fallback01_BaseLight.cpp" />
+    <ClCompile Include="sources\graphics\Material_Fallback02_BaseLight.cpp" />
+    <ClCompile Include="sources\graphics\Material_Flat.cpp" />
+    <ClCompile Include="sources\graphics\Material_FontNormal.cpp" />
+    <ClCompile Include="sources\graphics\Material_Modulative.cpp" />
+    <ClCompile Include="sources\graphics\Material_ModulativeX2.cpp" />
+    <ClCompile Include="sources\graphics\Material_Smoke2D.cpp" />
+    <ClCompile Include="sources\graphics\Material_Water.cpp" />
+    <ClCompile Include="sources\graphics\Mesh.cpp" />
+    <ClCompile Include="sources\graphics\Mesh2d.cpp" />
+    <ClCompile Include="sources\graphics\MeshCreator.cpp" />
+    <ClCompile Include="sources\graphics\ParticleEmitter.cpp" />
+    <ClCompile Include="sources\graphics\ParticleEmitter2D.cpp" />
+    <ClCompile Include="sources\graphics\ParticleEmitter3D.cpp" />
+    <ClCompile Include="sources\graphics\ParticleEmitter3D_UserData.cpp" />
+    <ClCompile Include="sources\graphics\ParticleSystem3D.cpp" />
+    <ClCompile Include="sources\graphics\Renderable.cpp" />
+    <ClCompile Include="sources\graphics\Renderer2D.cpp" />
+    <ClCompile Include="sources\graphics\Renderer3D.cpp" />
+    <ClCompile Include="sources\graphics\RendererPostEffects.cpp" />
+    <ClCompile Include="sources\graphics\RenderList.cpp" />
+    <ClCompile Include="sources\graphics\RenderObject2D.cpp" />
+    <ClCompile Include="sources\graphics\RenderState.cpp" />
+    <ClCompile Include="sources\graphics\Skeleton.cpp" />
+    <ClCompile Include="sources\graphics\SubMesh.cpp" />
+    <ClCompile Include="sources\gui\Gui.cpp" />
+    <ClCompile Include="sources\gui\GuiGfxElement.cpp" />
+    <ClCompile Include="sources\gui\GuiMaterialBasicTypes.cpp" />
+    <ClCompile Include="sources\gui\GuiPopUp.cpp" />
+    <ClCompile Include="sources\gui\GuiPopUpMessageBox.cpp" />
+    <ClCompile Include="sources\gui\GuiSet.cpp" />
+    <ClCompile Include="sources\gui\GuiSkin.cpp" />
+    <ClCompile Include="sources\gui\Widget.cpp" />
+    <ClCompile Include="sources\gui\WidgetBaseClasses.cpp" />
+    <ClCompile Include="sources\gui\WidgetButton.cpp" />
+    <ClCompile Include="sources\gui\WidgetCheckBox.cpp" />
+    <ClCompile Include="sources\gui\WidgetComboBox.cpp" />
+    <ClCompile Include="sources\gui\WidgetFrame.cpp" />
+    <ClCompile Include="sources\gui\WidgetImage.cpp" />
+    <ClCompile Include="sources\gui\WidgetLabel.cpp" />
+    <ClCompile Include="sources\gui\WidgetListBox.cpp" />
+    <ClCompile Include="sources\gui\WidgetSlider.cpp" />
+    <ClCompile Include="sources\gui\WidgetTextBox.cpp" />
+    <ClCompile Include="sources\gui\WidgetWindow.cpp" />
+    <ClCompile Include="sources\haptic\Haptic.cpp" />
+    <ClCompile Include="sources\haptic\LowLevelHaptic.cpp" />
+    <ClCompile Include="sources\impl\CGProgram.cpp" />
+    <ClCompile Include="sources\impl\CharacterBodyNewton.cpp" />
+    <ClCompile Include="sources\impl\CollideShapeNewton.cpp" />
+    <ClCompile Include="sources\impl\KeyboardSDL.cpp" />
+    <ClCompile Include="sources\impl\LowLevelGraphicsSDL.cpp" />
+    <ClCompile Include="sources\impl\LowLevelInputSDL.cpp" />
+    <ClCompile Include="sources\impl\LowLevelPhysicsNewton.cpp" />
+    <ClCompile Include="sources\impl\LowLevelResourcesSDL.cpp" />
+    <ClCompile Include="sources\impl\LowLevelSoundOpenAL.cpp" />
+    <ClCompile Include="sources\impl\LowLevelSystemSDL.cpp" />
+    <ClCompile Include="sources\impl\MeshLoaderCollada.cpp" />
+    <ClCompile Include="sources\impl\MeshLoaderColladaHelpers.cpp" />
+    <ClCompile Include="sources\impl\MeshLoaderColladaLoader.cpp" />
+    <ClCompile Include="sources\impl\MeshLoaderMSH.cpp" />
+    <ClCompile Include="sources\impl\MouseSDL.cpp" />
+    <ClCompile Include="sources\impl\OcclusionQueryOGL.cpp" />
+    <ClCompile Include="sources\impl\OpenALSoundChannel.cpp" />
+    <ClCompile Include="sources\impl\OpenALSoundData.cpp" />
+    <ClCompile Include="sources\impl\OpenALSoundEnvironment.cpp" />
+    <ClCompile Include="sources\impl\PBuffer.cpp" />
+    <ClCompile Include="sources\impl\PhysicsBodyNewton.cpp" />
+    <ClCompile Include="sources\impl\PhysicsControllerNewton.cpp" />
+    <ClCompile Include="sources\impl\PhysicsJointBallNewton.cpp" />
+    <ClCompile Include="sources\impl\PhysicsJointHingeNewton.cpp" />
+    <ClCompile Include="sources\impl\PhysicsJointScrewNewton.cpp" />
+    <ClCompile Include="sources\impl\PhysicsJointSliderNewton.cpp" />
+    <ClCompile Include="sources\impl\PhysicsMaterialNewton.cpp" />
+    <ClCompile Include="sources\impl\PhysicsWorldNewton.cpp" />
+    <ClCompile Include="sources\impl\platform\win32.cpp" />
+    <ClCompile Include="sources\impl\scriptbuilder.cpp" />
+    <ClCompile Include="sources\impl\scripthelper.cpp" />
+    <ClCompile Include="sources\impl\scriptstdstring.cpp" />
+    <ClCompile Include="sources\impl\SDLBitmap2D.cpp" />
+    <ClCompile Include="sources\impl\SDLFontData.cpp" />
+    <ClCompile Include="sources\impl\SDLGameSetup.cpp" />
+    <ClCompile Include="sources\impl\SDLTexture.cpp" />
+    <ClCompile Include="sources\impl\SqScript.cpp" />
+    <ClCompile Include="sources\impl\tinyXml\tinystr.cpp" />
+    <ClCompile Include="sources\impl\tinyXml\tinyxml.cpp" />
+    <ClCompile Include="sources\impl\tinyXml\tinyxmlerror.cpp" />
+    <ClCompile Include="sources\impl\tinyXml\tinyxmlparser.cpp" />
+    <ClCompile Include="sources\impl\VertexBufferOGL.cpp" />
+    <ClCompile Include="sources\impl\VertexBufferVBO.cpp" />
+    <ClCompile Include="sources\impl\VideoStreamTheora.cpp" />
+    <ClCompile Include="sources\input\Action.cpp" />
+    <ClCompile Include="sources\input\ActionHaptic.cpp" />
+    <ClCompile Include="sources\input\ActionKeyboard.cpp" />
+    <ClCompile Include="sources\input\ActionMouseButton.cpp" />
+    <ClCompile Include="sources\input\Input.cpp" />
+    <ClCompile Include="sources\input\InputDevice.cpp" />
+    <ClCompile Include="sources\input\Keyboard.cpp" />
+    <ClCompile Include="sources\input\Mouse.cpp" />
+    <ClCompile Include="sources\math\BoundingVolume.cpp" />
+    <ClCompile Include="sources\math\CRC.cpp" />
+    <ClCompile Include="sources\math\Frustum.cpp" />
+    <ClCompile Include="sources\math\Math.cpp" />
+    <ClCompile Include="sources\math\MathTypes.cpp" />
+    <ClCompile Include="sources\math\MeshTypes.cpp" />
+    <ClCompile Include="sources\math\Quaternion.cpp" />
+    <ClCompile Include="sources\math\Spring.cpp" />
+    <ClCompile Include="sources\physics\Body2D.cpp" />
+    <ClCompile Include="sources\physics\CharacterBody.cpp" />
+    <ClCompile Include="sources\physics\Collider2D.cpp" />
+    <ClCompile Include="sources\physics\Physics.cpp" />
+    <ClCompile Include="sources\physics\PhysicsBody.cpp" />
+    <ClCompile Include="sources\physics\PhysicsController.cpp" />
+    <ClCompile Include="sources\physics\PhysicsJoint.cpp" />
+    <ClCompile Include="sources\physics\PhysicsJointBall.cpp" />
+    <ClCompile Include="sources\physics\PhysicsJointHinge.cpp" />
+    <ClCompile Include="sources\physics\PhysicsJointScrew.cpp" />
+    <ClCompile Include="sources\physics\PhysicsJointSlider.cpp" />
+    <ClCompile Include="sources\physics\PhysicsWorld.cpp" />
+    <ClCompile Include="sources\physics\SurfaceData.cpp" />
+    <ClCompile Include="sources\resources\AnimationManager.cpp" />
+    <ClCompile Include="sources\resources\ConfigFile.cpp" />
+    <ClCompile Include="sources\resources\EntityLoader_Object.cpp" />
+    <ClCompile Include="sources\resources\FileSearcher.cpp" />
+    <ClCompile Include="sources\resources\FontManager.cpp" />
+    <ClCompile Include="sources\resources\FrameBitmap.cpp" />
+    <ClCompile Include="sources\resources\FrameTexture.cpp" />
+    <ClCompile Include="sources\resources\GpuProgramManager.cpp" />
+    <ClCompile Include="sources\resources\ImageEntityManager.cpp" />
+    <ClCompile Include="sources\resources\ImageManager.cpp" />
+    <ClCompile Include="sources\resources\LanguageFile.cpp" />
+    <ClCompile Include="sources\resources\MaterialManager.cpp" />
+    <ClCompile Include="sources\resources\MeshLoaderHandler.cpp" />
+    <ClCompile Include="sources\resources\MeshManager.cpp" />
+    <ClCompile Include="sources\resources\ParticleManager.cpp" />
+    <ClCompile Include="sources\resources\ResourceBase.cpp" />
+    <ClCompile Include="sources\resources\ResourceImage.cpp" />
+    <ClCompile Include="sources\resources\ResourceManager.cpp" />
+    <ClCompile Include="sources\resources\Resources.cpp" />
+    <ClCompile Include="sources\resources\ScriptManager.cpp" />
+    <ClCompile Include="sources\resources\SoundEntityManager.cpp" />
+    <ClCompile Include="sources\resources\SoundManager.cpp" />
+    <ClCompile Include="sources\resources\TextureManager.cpp" />
+    <ClCompile Include="sources\resources\TileSetManager.cpp" />
+    <ClCompile Include="sources\resources\VideoManager.cpp" />
+    <ClCompile Include="sources\scene\AnimationState.cpp" />
+    <ClCompile Include="sources\scene\Area2D.cpp" />
+    <ClCompile Include="sources\scene\Camera2D.cpp" />
+    <ClCompile Include="sources\scene\Camera3D.cpp" />
+    <ClCompile Include="sources\scene\ColliderEntity.cpp" />
+    <ClCompile Include="sources\scene\Entity.cpp" />
+    <ClCompile Include="sources\scene\Entity2D.cpp" />
+    <ClCompile Include="sources\scene\Entity3D.cpp" />
+    <ClCompile Include="sources\scene\GridMap2D.cpp" />
+    <ClCompile Include="sources\scene\ImageEntity.cpp" />
+    <ClCompile Include="sources\scene\Light.cpp" />
+    <ClCompile Include="sources\scene\Light2D.cpp" />
+    <ClCompile Include="sources\scene\Light2DPoint.cpp" />
+    <ClCompile Include="sources\scene\Light3D.cpp" />
+    <ClCompile Include="sources\scene\Light3DPoint.cpp" />
+    <ClCompile Include="sources\scene\Light3DSpot.cpp" />
+    <ClCompile Include="sources\scene\MeshEntity.cpp" />
+    <ClCompile Include="sources\scene\MultiImageEntity.cpp" />
+    <ClCompile Include="sources\scene\Node.cpp" />
+    <ClCompile Include="sources\scene\Node2D.cpp" />
+    <ClCompile Include="sources\scene\Node3D.cpp" />
+    <ClCompile Include="sources\scene\NodeState.cpp" />
+    <ClCompile Include="sources\scene\PortalContainer.cpp" />
+    <ClCompile Include="sources\scene\Scene.cpp" />
+    <ClCompile Include="sources\scene\SectorVisibility.cpp" />
+    <ClCompile Include="sources\scene\SoundEntity.cpp" />
+    <ClCompile Include="sources\scene\SoundSource.cpp" />
+    <ClCompile Include="sources\scene\SubMeshEntity.cpp" />
+    <ClCompile Include="sources\scene\Tile.cpp" />
+    <ClCompile Include="sources\scene\TileData.cpp" />
+    <ClCompile Include="sources\scene\TileLayer.cpp" />
+    <ClCompile Include="sources\scene\TileMap.cpp" />
+    <ClCompile Include="sources\scene\TileMapLineIt.cpp" />
+    <ClCompile Include="sources\scene\TileMapRectIt.cpp" />
+    <ClCompile Include="sources\scene\TileSet.cpp" />
+    <ClCompile Include="sources\scene\World2D.cpp" />
+    <ClCompile Include="sources\scene\World3D.cpp" />
+    <ClCompile Include="sources\sound\LowLevelSound.cpp" />
+    <ClCompile Include="sources\sound\MusicHandler.cpp" />
+    <ClCompile Include="sources\sound\Sound.cpp" />
+    <ClCompile Include="sources\sound\SoundEntityData.cpp" />
+    <ClCompile Include="sources\sound\SoundHandler.cpp" />
+    <ClCompile Include="sources\system\Container.cpp" />
+    <ClCompile Include="sources\system\LogicTimer.cpp" />
+    <ClCompile Include="sources\system\MemoryManager.cpp" />
+    <ClCompile Include="sources\system\SerializeClass.cpp" />
+    <ClCompile Include="sources\system\String.cpp" />
+    <ClCompile Include="sources\system\System.cpp" />
+  </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ai\AI.h" />
     <ClInclude Include="include\ai\AINodeContainer.h" />
@@ -187,7 +500,7 @@
     <ClInclude Include="include\haptic\HapticSurface.h" />
     <ClInclude Include="include\haptic\HapticTypes.h" />
     <ClInclude Include="include\haptic\LowLevelHaptic.h" />
-    <ClInclude Include="include\HPL.h" />
+    <ClInclude Include="include\hpl.h" />
     <ClInclude Include="include\impl\CGProgram.h" />
     <ClInclude Include="include\impl\CharacterBodyNewton.h" />
     <ClInclude Include="include\impl\CollideShapeNewton.h" />
@@ -216,14 +529,15 @@
     <ClInclude Include="include\impl\PhysicsMaterialNewton.h" />
     <ClInclude Include="include\impl\PhysicsWorldNewton.h" />
     <ClInclude Include="include\impl\Platform.h" />
-    <ClInclude Include="include\impl\scriptstring.h" />
+    <ClInclude Include="include\impl\scriptbuilder.h" />
+    <ClInclude Include="include\impl\scripthelper.h" />
+    <ClInclude Include="include\impl\scriptstdstring.h" />
     <ClInclude Include="include\impl\SDLBitmap2D.h" />
     <ClInclude Include="include\impl\SDLFontData.h" />
     <ClInclude Include="include\impl\SDLGameSetup.h" />
     <ClInclude Include="include\impl\SDLPixelFormat.h" />
     <ClInclude Include="include\impl\SDLTexture.h" />
     <ClInclude Include="include\impl\SqScript.h" />
-    <ClInclude Include="include\impl\stdstring.h" />
     <ClInclude Include="include\impl\tinyXML\tinystr.h" />
     <ClInclude Include="include\impl\tinyXML\tinyxml.h" />
     <ClInclude Include="include\impl\VertexBufferOGL.h" />
@@ -356,238 +670,6 @@
     <ClInclude Include="include\system\String.h" />
     <ClInclude Include="include\system\System.h" />
     <ClInclude Include="include\system\SystemTypes.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="sources\ai\AI.cpp" />
-    <ClCompile Include="sources\ai\AINodeContainer.cpp" />
-    <ClCompile Include="sources\ai\AINodeGenerator.cpp" />
-    <ClCompile Include="sources\ai\AStar.cpp" />
-    <ClCompile Include="sources\ai\StateMachine.cpp" />
-    <ClCompile Include="sources\game\Game.cpp" />
-    <ClCompile Include="sources\game\GameTypes.cpp" />
-    <ClCompile Include="sources\game\SaveGame.cpp" />
-    <ClCompile Include="sources\game\ScriptFuncs.cpp" />
-    <ClCompile Include="sources\game\Updater.cpp" />
-    <ClCompile Include="sources\graphics\Animation.cpp" />
-    <ClCompile Include="sources\graphics\AnimationTrack.cpp" />
-    <ClCompile Include="sources\graphics\BackgroundImage.cpp" />
-    <ClCompile Include="sources\graphics\Beam.cpp" />
-    <ClCompile Include="sources\graphics\BillBoard.cpp" />
-    <ClCompile Include="sources\graphics\Bone.cpp" />
-    <ClCompile Include="sources\graphics\BoneState.cpp" />
-    <ClCompile Include="sources\graphics\Color.cpp" />
-    <ClCompile Include="sources\graphics\FontData.cpp" />
-    <ClCompile Include="sources\graphics\GfxObject.cpp" />
-    <ClCompile Include="sources\graphics\GPUProgram.cpp" />
-    <ClCompile Include="sources\graphics\Graphics.cpp" />
-    <ClCompile Include="sources\graphics\GraphicsDrawer.cpp" />
-    <ClCompile Include="sources\graphics\ImageEntityData.cpp" />
-    <ClCompile Include="sources\graphics\Material.cpp" />
-    <ClCompile Include="sources\graphics\MaterialHandler.cpp" />
-    <ClCompile Include="sources\graphics\Material_Additive.cpp" />
-    <ClCompile Include="sources\graphics\Material_Alpha.cpp" />
-    <ClCompile Include="sources\graphics\Material_BaseLight.cpp" />
-    <ClCompile Include="sources\graphics\Material_Bump.cpp" />
-    <ClCompile Include="sources\graphics\Material_BumpColorSpec.cpp" />
-    <ClCompile Include="sources\graphics\Material_BumpSpec.cpp" />
-    <ClCompile Include="sources\graphics\Material_BumpSpec2D.cpp" />
-    <ClCompile Include="sources\graphics\Material_Diffuse.cpp" />
-    <ClCompile Include="sources\graphics\Material_Diffuse2D.cpp" />
-    <ClCompile Include="sources\graphics\Material_DiffuseAdditive2D.cpp" />
-    <ClCompile Include="sources\graphics\Material_DiffuseAlpha2D.cpp" />
-    <ClCompile Include="sources\graphics\Material_DiffuseSpec.cpp" />
-    <ClCompile Include="sources\graphics\Material_EnvMap_Reflect.cpp" />
-    <ClCompile Include="sources\graphics\Material_Fallback01_BaseLight.cpp" />
-    <ClCompile Include="sources\graphics\Material_Fallback02_BaseLight.cpp" />
-    <ClCompile Include="sources\graphics\Material_Flat.cpp" />
-    <ClCompile Include="sources\graphics\Material_FontNormal.cpp" />
-    <ClCompile Include="sources\graphics\Material_Modulative.cpp" />
-    <ClCompile Include="sources\graphics\Material_ModulativeX2.cpp" />
-    <ClCompile Include="sources\graphics\Material_Smoke2D.cpp" />
-    <ClCompile Include="sources\graphics\Material_Water.cpp" />
-    <ClCompile Include="sources\graphics\Mesh.cpp" />
-    <ClCompile Include="sources\graphics\Mesh2d.cpp" />
-    <ClCompile Include="sources\graphics\MeshCreator.cpp" />
-    <ClCompile Include="sources\graphics\ParticleEmitter.cpp" />
-    <ClCompile Include="sources\graphics\ParticleEmitter2D.cpp" />
-    <ClCompile Include="sources\graphics\ParticleEmitter3D.cpp" />
-    <ClCompile Include="sources\graphics\ParticleEmitter3D_UserData.cpp" />
-    <ClCompile Include="sources\graphics\ParticleSystem3D.cpp" />
-    <ClCompile Include="sources\graphics\Renderable.cpp" />
-    <ClCompile Include="sources\graphics\Renderer2D.cpp" />
-    <ClCompile Include="sources\graphics\Renderer3D.cpp" />
-    <ClCompile Include="sources\graphics\RendererPostEffects.cpp" />
-    <ClCompile Include="sources\graphics\RenderList.cpp" />
-    <ClCompile Include="sources\graphics\RenderObject2D.cpp" />
-    <ClCompile Include="sources\graphics\RenderState.cpp" />
-    <ClCompile Include="sources\graphics\Skeleton.cpp" />
-    <ClCompile Include="sources\graphics\SubMesh.cpp" />
-    <ClCompile Include="sources\gui\Gui.cpp" />
-    <ClCompile Include="sources\gui\GuiGfxElement.cpp" />
-    <ClCompile Include="sources\gui\GuiMaterialBasicTypes.cpp" />
-    <ClCompile Include="sources\gui\GuiPopUp.cpp" />
-    <ClCompile Include="sources\gui\GuiPopUpMessageBox.cpp" />
-    <ClCompile Include="sources\gui\GuiSet.cpp" />
-    <ClCompile Include="sources\gui\GuiSkin.cpp" />
-    <ClCompile Include="sources\gui\Widget.cpp" />
-    <ClCompile Include="sources\gui\WidgetBaseClasses.cpp" />
-    <ClCompile Include="sources\gui\WidgetButton.cpp" />
-    <ClCompile Include="sources\gui\WidgetCheckBox.cpp" />
-    <ClCompile Include="sources\gui\WidgetComboBox.cpp" />
-    <ClCompile Include="sources\gui\WidgetFrame.cpp" />
-    <ClCompile Include="sources\gui\WidgetImage.cpp" />
-    <ClCompile Include="sources\gui\WidgetLabel.cpp" />
-    <ClCompile Include="sources\gui\WidgetListBox.cpp" />
-    <ClCompile Include="sources\gui\WidgetSlider.cpp" />
-    <ClCompile Include="sources\gui\WidgetTextBox.cpp" />
-    <ClCompile Include="sources\gui\WidgetWindow.cpp" />
-    <ClCompile Include="sources\haptic\Haptic.cpp" />
-    <ClCompile Include="sources\haptic\LowLevelHaptic.cpp" />
-    <ClCompile Include="sources\impl\CGProgram.cpp" />
-    <ClCompile Include="sources\impl\CharacterBodyNewton.cpp" />
-    <ClCompile Include="sources\impl\CollideShapeNewton.cpp" />
-    <ClCompile Include="sources\impl\KeyboardSDL.cpp" />
-    <ClCompile Include="sources\impl\LowLevelGraphicsSDL.cpp" />
-    <ClCompile Include="sources\impl\LowLevelInputSDL.cpp" />
-    <ClCompile Include="sources\impl\LowLevelPhysicsNewton.cpp" />
-    <ClCompile Include="sources\impl\LowLevelResourcesSDL.cpp" />
-    <ClCompile Include="sources\impl\LowLevelSoundOpenAL.cpp" />
-    <ClCompile Include="sources\impl\LowLevelSystemSDL.cpp" />
-    <ClCompile Include="sources\impl\MeshLoaderCollada.cpp" />
-    <ClCompile Include="sources\impl\MeshLoaderColladaHelpers.cpp" />
-    <ClCompile Include="sources\impl\MeshLoaderColladaLoader.cpp" />
-    <ClCompile Include="sources\impl\MeshLoaderMSH.cpp" />
-    <ClCompile Include="sources\impl\MouseSDL.cpp" />
-    <ClCompile Include="sources\impl\OcclusionQueryOGL.cpp" />
-    <ClCompile Include="sources\impl\OpenALSoundChannel.cpp" />
-    <ClCompile Include="sources\impl\OpenALSoundData.cpp" />
-    <ClCompile Include="sources\impl\OpenALSoundEnvironment.cpp" />
-    <ClCompile Include="sources\impl\PBuffer.cpp" />
-    <ClCompile Include="sources\impl\PhysicsBodyNewton.cpp" />
-    <ClCompile Include="sources\impl\PhysicsControllerNewton.cpp" />
-    <ClCompile Include="sources\impl\PhysicsJointBallNewton.cpp" />
-    <ClCompile Include="sources\impl\PhysicsJointHingeNewton.cpp" />
-    <ClCompile Include="sources\impl\PhysicsJointScrewNewton.cpp" />
-    <ClCompile Include="sources\impl\PhysicsJointSliderNewton.cpp" />
-    <ClCompile Include="sources\impl\PhysicsMaterialNewton.cpp" />
-    <ClCompile Include="sources\impl\PhysicsWorldNewton.cpp" />
-    <ClCompile Include="sources\impl\platform\win32.cpp" />
-    <ClCompile Include="sources\impl\scriptstring.cpp" />
-    <ClCompile Include="sources\impl\SDLBitmap2D.cpp" />
-    <ClCompile Include="sources\impl\SDLFontData.cpp" />
-    <ClCompile Include="sources\impl\SDLGameSetup.cpp" />
-    <ClCompile Include="sources\impl\SDLTexture.cpp" />
-    <ClCompile Include="sources\impl\SqScript.cpp" />
-    <ClCompile Include="sources\impl\stdstring.cpp" />
-    <ClCompile Include="sources\impl\tinyXml\tinystr.cpp" />
-    <ClCompile Include="sources\impl\tinyXml\tinyxml.cpp" />
-    <ClCompile Include="sources\impl\tinyXml\tinyxmlerror.cpp" />
-    <ClCompile Include="sources\impl\tinyXml\tinyxmlparser.cpp" />
-    <ClCompile Include="sources\impl\VertexBufferOGL.cpp" />
-    <ClCompile Include="sources\impl\VertexBufferVBO.cpp" />
-    <ClCompile Include="sources\impl\VideoStreamTheora.cpp" />
-    <ClCompile Include="sources\input\Action.cpp" />
-    <ClCompile Include="sources\input\ActionHaptic.cpp" />
-    <ClCompile Include="sources\input\ActionKeyboard.cpp" />
-    <ClCompile Include="sources\input\ActionMouseButton.cpp" />
-    <ClCompile Include="sources\input\Input.cpp" />
-    <ClCompile Include="sources\input\InputDevice.cpp" />
-    <ClCompile Include="sources\input\Keyboard.cpp" />
-    <ClCompile Include="sources\input\Mouse.cpp" />
-    <ClCompile Include="sources\math\BoundingVolume.cpp" />
-    <ClCompile Include="sources\math\CRC.cpp" />
-    <ClCompile Include="sources\math\Frustum.cpp" />
-    <ClCompile Include="sources\math\Math.cpp" />
-    <ClCompile Include="sources\math\MathTypes.cpp" />
-    <ClCompile Include="sources\math\MeshTypes.cpp" />
-    <ClCompile Include="sources\math\Quaternion.cpp" />
-    <ClCompile Include="sources\math\Spring.cpp" />
-    <ClCompile Include="sources\physics\Body2D.cpp" />
-    <ClCompile Include="sources\physics\CharacterBody.cpp" />
-    <ClCompile Include="sources\physics\Collider2D.cpp" />
-    <ClCompile Include="sources\physics\Physics.cpp" />
-    <ClCompile Include="sources\physics\PhysicsBody.cpp" />
-    <ClCompile Include="sources\physics\PhysicsController.cpp" />
-    <ClCompile Include="sources\physics\PhysicsJoint.cpp" />
-    <ClCompile Include="sources\physics\PhysicsJointBall.cpp" />
-    <ClCompile Include="sources\physics\PhysicsJointHinge.cpp" />
-    <ClCompile Include="sources\physics\PhysicsJointScrew.cpp" />
-    <ClCompile Include="sources\physics\PhysicsJointSlider.cpp" />
-    <ClCompile Include="sources\physics\PhysicsWorld.cpp" />
-    <ClCompile Include="sources\physics\SurfaceData.cpp" />
-    <ClCompile Include="sources\resources\AnimationManager.cpp" />
-    <ClCompile Include="sources\resources\ConfigFile.cpp" />
-    <ClCompile Include="sources\resources\EntityLoader_Object.cpp" />
-    <ClCompile Include="sources\resources\FileSearcher.cpp" />
-    <ClCompile Include="sources\resources\FontManager.cpp" />
-    <ClCompile Include="sources\resources\FrameBitmap.cpp" />
-    <ClCompile Include="sources\resources\FrameTexture.cpp" />
-    <ClCompile Include="sources\resources\GpuProgramManager.cpp" />
-    <ClCompile Include="sources\resources\ImageEntityManager.cpp" />
-    <ClCompile Include="sources\resources\ImageManager.cpp" />
-    <ClCompile Include="sources\resources\LanguageFile.cpp" />
-    <ClCompile Include="sources\resources\MaterialManager.cpp" />
-    <ClCompile Include="sources\resources\MeshLoaderHandler.cpp" />
-    <ClCompile Include="sources\resources\MeshManager.cpp" />
-    <ClCompile Include="sources\resources\ParticleManager.cpp" />
-    <ClCompile Include="sources\resources\ResourceBase.cpp" />
-    <ClCompile Include="sources\resources\ResourceImage.cpp" />
-    <ClCompile Include="sources\resources\ResourceManager.cpp" />
-    <ClCompile Include="sources\resources\Resources.cpp" />
-    <ClCompile Include="sources\resources\ScriptManager.cpp" />
-    <ClCompile Include="sources\resources\SoundEntityManager.cpp" />
-    <ClCompile Include="sources\resources\SoundManager.cpp" />
-    <ClCompile Include="sources\resources\TextureManager.cpp" />
-    <ClCompile Include="sources\resources\TileSetManager.cpp" />
-    <ClCompile Include="sources\resources\VideoManager.cpp" />
-    <ClCompile Include="sources\scene\AnimationState.cpp" />
-    <ClCompile Include="sources\scene\Area2D.cpp" />
-    <ClCompile Include="sources\scene\Camera2D.cpp" />
-    <ClCompile Include="sources\scene\Camera3D.cpp" />
-    <ClCompile Include="sources\scene\ColliderEntity.cpp" />
-    <ClCompile Include="sources\scene\Entity.cpp" />
-    <ClCompile Include="sources\scene\Entity2D.cpp" />
-    <ClCompile Include="sources\scene\Entity3D.cpp" />
-    <ClCompile Include="sources\scene\GridMap2D.cpp" />
-    <ClCompile Include="sources\scene\ImageEntity.cpp" />
-    <ClCompile Include="sources\scene\Light.cpp" />
-    <ClCompile Include="sources\scene\Light2D.cpp" />
-    <ClCompile Include="sources\scene\Light2DPoint.cpp" />
-    <ClCompile Include="sources\scene\Light3D.cpp" />
-    <ClCompile Include="sources\scene\Light3DPoint.cpp" />
-    <ClCompile Include="sources\scene\Light3DSpot.cpp" />
-    <ClCompile Include="sources\scene\MeshEntity.cpp" />
-    <ClCompile Include="sources\scene\MultiImageEntity.cpp" />
-    <ClCompile Include="sources\scene\Node.cpp" />
-    <ClCompile Include="sources\scene\Node2D.cpp" />
-    <ClCompile Include="sources\scene\Node3D.cpp" />
-    <ClCompile Include="sources\scene\NodeState.cpp" />
-    <ClCompile Include="sources\scene\PortalContainer.cpp" />
-    <ClCompile Include="sources\scene\Scene.cpp" />
-    <ClCompile Include="sources\scene\SectorVisibility.cpp" />
-    <ClCompile Include="sources\scene\SoundEntity.cpp" />
-    <ClCompile Include="sources\scene\SoundSource.cpp" />
-    <ClCompile Include="sources\scene\SubMeshEntity.cpp" />
-    <ClCompile Include="sources\scene\Tile.cpp" />
-    <ClCompile Include="sources\scene\TileData.cpp" />
-    <ClCompile Include="sources\scene\TileLayer.cpp" />
-    <ClCompile Include="sources\scene\TileMap.cpp" />
-    <ClCompile Include="sources\scene\TileMapLineIt.cpp" />
-    <ClCompile Include="sources\scene\TileMapRectIt.cpp" />
-    <ClCompile Include="sources\scene\TileSet.cpp" />
-    <ClCompile Include="sources\scene\World2D.cpp" />
-    <ClCompile Include="sources\scene\World3D.cpp" />
-    <ClCompile Include="sources\sound\LowLevelSound.cpp" />
-    <ClCompile Include="sources\sound\MusicHandler.cpp" />
-    <ClCompile Include="sources\sound\Sound.cpp" />
-    <ClCompile Include="sources\sound\SoundEntityData.cpp" />
-    <ClCompile Include="sources\sound\SoundHandler.cpp" />
-    <ClCompile Include="sources\system\Container.cpp" />
-    <ClCompile Include="sources\system\LogicTimer.cpp" />
-    <ClCompile Include="sources\system\MemoryManager.cpp" />
-    <ClCompile Include="sources\system\SerializeClass.cpp" />
-    <ClCompile Include="sources\system\String.cpp" />
-    <ClCompile Include="sources\system\System.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

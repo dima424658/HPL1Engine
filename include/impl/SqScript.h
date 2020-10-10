@@ -35,11 +35,11 @@ namespace hpl {
 
 		bool CreateFromFile(const tString& asFileName);
 
-		int GetFuncHandle(const tString& asFunc);
+		asIScriptFunction* GetFuncHandle(const tString& asFunc);
 		void AddArg(const tString& asArg);
 
 		bool Run(const tString& asFuncLine);
-		bool Run(int alHandle);
+		bool Run(asIScriptFunction* alHandle);
 
 	private:
 		asIScriptEngine *mpScriptEngine;

@@ -231,7 +231,7 @@ namespace hpl {
 
 		virtual bool CreateFromFile(const tString& asFile)=0;
 
-		virtual int GetFuncHandle(const tString& asFunc)=0;
+		virtual asIScriptFunction* GetFuncHandle(const tString& asFunc)=0;
 
 		virtual void AddArg(const tString& asArg)=0;
 
@@ -242,7 +242,7 @@ namespace hpl {
 		 */
 		virtual bool Run(const tString& asFuncLine)=0;
 
-		virtual bool Run(int alHandle)=0;
+		virtual bool Run(asIScriptFunction* alHandle)=0;
 	};
 };
 #endif // HPL_SCRIPT_H
